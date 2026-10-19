@@ -1,19 +1,23 @@
 # Master Curriculum Map
 
-The current planning workbook is Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx. The original v0.1 baseline is preserved unchanged.
+The current planning workbook is [Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx](Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx). The original [v0.1 baseline](Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx) is preserved unchanged.
 
 ## What v0.2 adds
 
 - Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.
 - A cell-level validation check for correct field placement in the FND-001 concept row.
-- A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.
-- First tranche: 27 AI-assisted preliminary foundation/algebra classifications; educator confirmation is pending and 241 edges remain unreviewed.
-- Proposed validation checks are test plans, not reported learning results.
-- An Audit & Review sheet with findings, limits, and a prioritized human-review queue.
+- A Dependency Review ledger with specific mechanisms, proposed validation checks, provenance, and review dates.
+- Two AI-assisted preliminary review batches covering **35 of 268 edges**; educator confirmation remains pending, and **233 edges remain unreviewed**.
+- An Audit & Review sheet with structural findings, limitations, and prioritized follow-up work.
+
+## Dependency review documents
+
+- [Batch 1: Foundation-to-algebra and early function relationships](DEPENDENCY_REVIEW_BATCH_01.md) ([structured register](reviews/dependency-review-batch-01.json)).
+- [Batch 2: Powers, polynomials, rational expressions, radicals, exponentials, and sequences](DEPENDENCY_REVIEW_BATCH_02.md) ([structured register](reviews/dependency-review-batch-02.json)).
 
 ## Important interpretation rule
 
-The graph is structurally consistent, but that does not prove its proposed prerequisites are pedagogically necessary. All v0.1 edge types and rationale text remain unverified historical proposals. Do not treat an edge as a confirmed core prerequisite until it has been reviewed and supported by a specific reason and validation check.
+The graph is structurally consistent, but that does not prove its proposed prerequisites are pedagogically necessary. The old v0.1 edge labels and generic rationale text remain historical proposals. The 35 classifications in the current review batches are AI-assisted preliminary judgments, not expert-approved decisions or empirical results. In the workbook, they are identified as preliminary and educator confirmation is pending. Do not treat an edge as a confirmed core prerequisite until it has a specific reason, a relevant validation check, and appropriate review.
 
 The map should make explicit:
 
@@ -27,8 +31,4 @@ The map should make explicit:
 - assessment/transfer checks and verification needs;
 - status, open questions, and decision history.
 
-When revising the workbook, preserve its existing structure unless the revision is deliberate; record material changes in decisions/decision-log.md.
-
-## Dependency review progress
-
-- [Batch 1: Foundations into Algebra](DEPENDENCY_REVIEW_BATCH_01.md) contains provisional AI-drafted classifications and concrete validation checks for selected high-leverage edges. These are recommendations, **not expert-approved decisions**; the official workbook ledger remains UNREVIEWED until a human reviewer confirms the rationale and evidence.
+When revising the workbook, preserve its existing structure unless the revision is deliberate; record material changes in [decisions/decision-log.md](../../decisions/decision-log.md).
