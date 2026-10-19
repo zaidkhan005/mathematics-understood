@@ -16,6 +16,7 @@
 | Directed cycles | None detected | Graph structure only; no cycle is not proof of pedagogical validity. |
 | Inventory/edge-list mismatch pairs after field validation | 0 | The Concept Inventory prerequisite fields reconcile with the Dependencies edge list. |
 | Invalid concept references in science links | 0 | All science-link references resolve to current concept IDs. |
+| Open design decisions | 11 | D-11 is recorded as an open proposal; no concept-stage or dependency change has been applied. |
 | Edges labelled Core / presumed prerequisite | 268 | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | 268 | Each needs a specific dependency mechanism and validation check. |
 
