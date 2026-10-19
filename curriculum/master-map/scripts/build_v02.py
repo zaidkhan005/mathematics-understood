@@ -79,7 +79,7 @@ if prereq_cell.value and not re.fullmatch(r"(?:[A-Z]+-\d{3})(?:\s*;\s*[A-Z]+-\d{
     prereq_cell.value = None
     field_fix = True
 inv["A1"] = "MASTER CURRICULUM MAP v0.2 — Concept Inventory"
-inv["A2"] = ("Audited successor to v0.1. One FND-001 field-alignment issue was corrected. "
+inv["A2"] = ("Audited successor to v0.1. FND-001 field placement was checked against the source and is already correct. "
              "Concepts and dependency interpretations remain provisional pending pedagogical review.")
 inv["A2"].alignment = Alignment(wrap_text=True, vertical="center")
 inv.row_dimensions[2].height = 34
@@ -131,7 +131,7 @@ if duplicates:
 if cycle:
     raise ValueError("Dependency graph has a directed cycle.")
 if pair_mismatches:
-    raise ValueError(f"Inventory/edge list mismatch after FND-001 repair: {pair_mismatches[:10]}")
+    raise ValueError(f"Inventory/edge list mismatch after checking FND-001 field placement: {pair_mismatches[:10]}")
 
 science = wb["Science Links"]
 science_refs = []
@@ -245,7 +245,7 @@ checks = [
     ("Invalid concept references in science links", len(bad_science_refs), "Must be zero; all references resolve."),
     ("Edges marked Core / presumed prerequisite", all_core_proposed, "All are provisional proposals, not confirmed necessities."),
     ("Template-style edge rationales", template_count, "Each edge needs a specific dependency mechanism and validation check."),
-    ("FND-001 field alignment", "Corrected" if (field_fix or (not inv.cell(fnd_row, 6).value and inv.cell(fnd_row, 7).value)) else "Already aligned", "Representation notes belong in the representation column, not the prerequisite-ID column."),
+    ("FND-001 field alignment", "Corrected" if (field_fix or (not inv.cell(fnd_row, 6).value and inv.cell(fnd_row, 7).value)) else "Already aligned", "Cell-level check confirms representation notes are in the representation column and the prerequisite-ID field is empty."),
     ("Science application rows", science_rows, "Each needs science/source review and explicit model assumptions."),
     ("Open design decisions", decision_count, "Stages remain provisional and do not define final book volumes."),
 ]
@@ -274,9 +274,9 @@ ca_row = row_by_id.get("CA-001")
 ca_stage = str(inv.cell(ca_row, 2).value or "") if ca_row else "not found"
 ca_pre = str(inv.cell(ca_row, 6).value or "") if ca_row else ""
 items = [
-    ("RQ-001", "P0", "Data integrity", "FND-001 representation notes were placed in Core prerequisite IDs.",
-     "Move those notes to Representations / visual requirements and keep prerequisites empty unless actual concept IDs are required.",
-     "Resolved in v0.2", "FND-001 prerequisite cell is empty; representation cell has the notes; prerequisite pairs reconcile."),
+    ("RQ-001", "P0", "Data integrity", "FND-001 field placement was inspected against the source; representation notes are already in the correct column.",
+     "Preserve the correct source data and keep a regression check that the prerequisite column contains concept IDs only.",
+     "Resolved — verified", "Cell-level check confirms the prerequisite cell is empty and the representation column contains the notes."),
     ("RQ-002", "P1", "Dependency semantics", f"All {edge_count} edges use the Core / presumed prerequisite label and remain provisional.",
      "Review every edge; classify it as Core required, Helpful, Repair path, Contextual link, or Remove; record a specific reason and a validation check.",
      "Open", "All edge rows have a reviewed classification, specific mechanism, validation check, reviewer, and date."),
@@ -346,7 +346,7 @@ if root_readme.exists():
     "The original v0.1 baseline is preserved unchanged.\n\n"
     "## What v0.2 adds\n\n"
     "- Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.\n"
-    "- Correction of a field-alignment error in the FND-001 concept row.\n"
+    "- A cell-level validation check for correct field placement in the FND-001 concept row.\n"
     "- A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.\n"
     "- An Audit & Review sheet with findings, limits, and a prioritized human-review queue.\n\n"
     "## Important interpretation rule\n\n"
@@ -387,9 +387,9 @@ report = f"""# Master Curriculum Map v0.2 — Structural Audit Report
 | Edges labelled Core / presumed prerequisite | {all_core_proposed} | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | {template_count} | Each needs a specific dependency mechanism and validation check. |
 
-## Corrections made in v0.2
+## Changes made in v0.2
 
-1. Corrected the FND-001 row: its representation notes (Annotated examples; symbol maps; number sentences.) had been entered in the core prerequisite field. The prerequisite field is now empty and the notes are in the representation/visual-requirements field.
+1. Verified the FND-001 row’s field placement against the source. Its prerequisite field is empty and its representation notes are already in the representation/visual-requirements field, so no source correction was necessary; the build retains a regression check for this structure.
 2. Updated workbook titles and baseline references to v0.2 while preserving the v0.1 workbook unchanged.
 3. Added a Dependency Review ledger preserving the prior edge labels and rationale text, with new fields for reviewed classification, specific dependency mechanism/evidence, validation check, reviewer, and review date. Each row starts UNREVIEWED.
 4. Added an Audit & Review worksheet containing structural checks and a prioritized human-review queue.
