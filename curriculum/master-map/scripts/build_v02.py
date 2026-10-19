@@ -241,7 +241,7 @@ checks = [
     ("Invalid edge endpoints", len(bad_endpoints), "Must be zero; each endpoint must resolve to a concept ID."),
     ("Duplicate directed edges", len(duplicates), "None detected." if not duplicates else "Resolve duplicates."),
     ("Directed cycle detected", "Yes" if cycle else "No", "Graph is acyclic; this does not establish pedagogical correctness."),
-    ("Inventory/edge-list mismatch pairs after repair", len(pair_mismatches), "Must be zero."),
+    ("Inventory/edge-list mismatch pairs after field validation", len(pair_mismatches), "Must be zero."),
     ("Invalid concept references in science links", len(bad_science_refs), "Must be zero; all references resolve."),
     ("Edges marked Core / presumed prerequisite", all_core_proposed, "All are provisional proposals, not confirmed necessities."),
     ("Template-style edge rationales", template_count, "Each edge needs a specific dependency mechanism and validation check."),
@@ -382,7 +382,7 @@ report = f"""# Master Curriculum Map v0.2 — Structural Audit Report
 | Invalid edge endpoints | {len(bad_endpoints)} | Every dependency endpoint resolves to a concept ID. |
 | Duplicate directed edges | {len(duplicates)} | None detected. |
 | Directed cycles | {"Detected" if cycle else "None detected"} | Graph structure only; no cycle is not proof of pedagogical validity. |
-| Inventory/edge-list mismatch pairs after repair | {len(pair_mismatches)} | The Concept Inventory prerequisite fields reconcile with the Dependencies edge list. |
+| Inventory/edge-list mismatch pairs after field validation | {len(pair_mismatches)} | The Concept Inventory prerequisite fields reconcile with the Dependencies edge list. |
 | Invalid concept references in science links | {len(bad_science_refs)} | All science-link references resolve to current concept IDs. |
 | Edges labelled Core / presumed prerequisite | {all_core_proposed} | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | {template_count} | Each needs a specific dependency mechanism and validation check. |
