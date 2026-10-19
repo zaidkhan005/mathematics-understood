@@ -48,3 +48,5 @@ A draft is not verified merely because it sounds plausible or because an LLM has
 Unless a file or asset states otherwise, original educational and project-documentation materials in this repository are offered under **Creative Commons Attribution 4.0 International (CC BY 4.0)**, only to the extent the project authors or contributors have the rights necessary to license those materials. See [LICENSE](LICENSE) and [RIGHTS_AND_REUSE.md](RIGHTS_AND_REUSE.md). Third-party material and other excluded rights remain subject to their own terms.
 
 - **Dependency review:** [Batch 1](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md) and [Batch 2](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md) document draft classifications and proposed checks; neither is expert sign-off.
+
+- **Open curriculum proposal:** [Separate elementary complex numbers from complex analysis](curriculum/master-map/DECISION_PROPOSAL_CA001.md); no stage or dependency changes have been applied yet.
