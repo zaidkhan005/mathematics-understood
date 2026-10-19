@@ -1,5 +1,14 @@
 # Decision log
 
+## 2026-10-19 — Master Curriculum Map v0.2 structural audit
+
+- **Decision:** Preserve v0.1 as the baseline and publish v0.2 as the audited successor. Add a dependency-review ledger; all 268 current edge classifications remain provisional until their necessity is established.
+- **Structural findings:** 103 concept clusters and 268 prerequisite edges; no duplicate directed edges, invalid endpoints, or cycles detected; all science-link references resolve. Concept Inventory prerequisite fields reconcile with the dependency edge list.
+- **Data-integrity note:** Cell-level verification confirmed that FND-001's prerequisite field is empty and its representation notes are already in the correct representation column. No correction to this row was needed; the workbook builder checks this condition.
+- **Open curriculum question:** Review the stage placement of introductory complex numbers (CA-001) before finalizing stage/volume boundaries.
+- **Status and limits:** v0.2 is a working architecture. Structural consistency does not establish that all prerequisites are pedagogically necessary or that the learning method is effective; expert review and learner testing remain required.
+
+
 Record consequential project decisions; do not rewrite history. Use the format below for new entries.
 
 ## 2026-10-19 — Public repository and CC BY 4.0 scope
