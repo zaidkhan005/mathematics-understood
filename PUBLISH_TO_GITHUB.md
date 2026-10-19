@@ -1,18 +1,22 @@
-# Publish this project to your GitHub account (private by default)
+# Repository publishing and maintenance
 
-The connected GitHub tool can create files in an existing repository, but it does not expose the action required to create a new repository. This folder is already a Git repository with an initial commit, so you can publish it using GitHub Desktop.
+**Status: the repository has already been created and made public.** The original instructions in this file were written for the initial setup and are superseded.
 
-## Recommended no-terminal workflow
+- **Repository:** https://github.com/zaidkhan005/mathematics-understood
+- **Default branch:** `main`
+- **Visibility:** public
+- **Licensing scope:** see [LICENSE](LICENSE) and [RIGHTS_AND_REUSE.md](RIGHTS_AND_REUSE.md).
 
-1. Download `Mathematics_Understood_GitHub_Starter.zip` from the ChatGPT response and extract it. Keep the extracted `Mathematics-Understood` folder intact, including its hidden `.git` folder.
-2. Install/open GitHub Desktop: <https://desktop.github.com/> and sign in to the GitHub account `zaidkhan005`.
-3. In GitHub Desktop, choose **File → Add Local Repository…** and select the extracted `Mathematics-Understood` folder. If macOS Finder hides `.git`, that is normal; select the project folder itself.
-4. Click **Publish repository**.
-5. Set the repository name to `mathematics-understood`, choose the correct owner (`zaidkhan005`), and make sure **Keep this code private** is checked before publishing.
-6. After publishing, open the repository on GitHub and confirm the README and folders appear. Share the repository URL back in the project conversation so future work can target the correct remote.
+## Future changes
 
-## Important
+For ordinary text changes, use the GitHub web interface (**Add file** to create a file; the pencil icon to edit an existing file), or an authorized GitHub integration when write access is available. Confirm the resulting commit and reopen the changed file from GitHub to verify it.
 
-- Do not choose public visibility until the project owner makes an explicit publication decision and reviews licensing/reuse rights.
-- The local repository has one scaffold commit on `main` and no remote configured yet. Publishing connects it to the new remote; it does not overwrite any existing GitHub repository.
-- The `.docx` and `.xlsx` originals are included beside the editable Markdown and README files.
+For every public contribution:
+
+1. Check that the content is original or that its source, license, attribution, and permissions allow the intended use.
+2. Do not commit secrets, private learner information, credentials, or unlicensed third-party material.
+3. Make focused commits with clear messages.
+4. Check the repository after committing; do not assume an attempted write succeeded unless GitHub confirms it.
+5. Record material project decisions in [the decision log](decisions/decision-log.md).
+
+The old GitHub Desktop publication workflow and its advice to keep the repository private applied only to the initial setup; do not follow those obsolete instructions for this already-published repository.
