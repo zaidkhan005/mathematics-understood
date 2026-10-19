@@ -34,3 +34,7 @@ The map should make explicit:
 - status, open questions, and decision history.
 
 When revising the workbook, preserve its existing structure unless the revision is deliberate; record material changes in decisions/decision-log.md.
+
+## Open design proposal
+
+- [D-11 proposal: separate elementary complex numbers from complex analysis](DECISION_PROPOSAL_CA001.md). This is a source-backed proposal, not an implemented graph change; the affected clusters and edges remain unchanged until the scope is reviewed together.
