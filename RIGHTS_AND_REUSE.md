@@ -25,7 +25,7 @@ A file-specific license or rights notice takes precedence for that file. If a wo
 
 ## Contributions
 
-Contributors should submit only material they have the right to share. Unless a different arrangement is agreed in writing before acceptance, submitting an original contribution intended for the project means it may be distributed under CC BY 4.0 within the scope described above. Contributors must identify third-party material and its conditions before it is accepted.
+Contributors should submit only material they have the right to share. Before a contribution is merged, the contributor should explicitly confirm in the pull request that any original material they are contributing may be distributed under CC BY 4.0 within the scope described here. Contributors must identify third-party material and its conditions before acceptance. If rights are unclear—for example, because material was created under an employer, university, or other agreement—do not merge it until permission is confirmed.
 
 ## Important boundary
 
