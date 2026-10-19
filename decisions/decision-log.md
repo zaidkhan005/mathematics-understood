@@ -46,9 +46,9 @@ Record consequential project decisions; do not rewrite history. Use the format b
 - **Impacts on curriculum/manuscripts/templates:**
 - **Status / owner / review trigger:**
 
-## 2026-10-19 — Dependency review Batch 1 drafted
+## 2026-10-19 — Dependency review batches 1 and 2 drafted
 
-- **Scope:** 14 high-leverage foundation-to-algebra edges reviewed as an AI-generated triage draft: EDGE-029, 030, 032, 033, 035, 037, 040, 041, 042, 044, 046, 047, 057, and 059.
-- **Decision status:** Recommendations are not expert-approved. The v0.2 official review classifications remain UNREVIEWED until a human reviewer checks each specific dependency mechanism and validation test.
-- **Principle:** Separate prerequisites required for full-scope mastery from concepts useful only for entry examples or contextual applications. Build repair routes and co-taught entry points where a rigid edge would block learning unnecessarily.
-- **Record:** See [DEPENDENCY_REVIEW_BATCH_01.md](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md).
+- **Scope:** The structured registers cover 35 edges provisionally: 27 early algebra/function links and 8 foundational links into polynomial, rational-expression, radical, exponential/logarithmic, and sequence concepts.
+- **Decision status:** The workbook records these as AI-assisted preliminary desk reviews with educator confirmation pending. They are not expert-approved classifications, and the proposed diagnostic/transfer checks have not yet been run.
+- **Principle:** Separate prerequisites for full-scope mastery from knowledge useful only for starter examples or contextual applications. Use diagnostics, co-taught bridges, and repair routes so a rigid graph does not block entry unnecessarily.
+- **Records:** [Batch 1](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md) and [Batch 2](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md), with their structured JSON registers under `curriculum/master-map/reviews/`.
