@@ -1,0 +1,149 @@
+{
+  "batch_id": "DEPENDENCY-REVIEW-01",
+  "title": "Foundation-to-algebra and early function relationships",
+  "prepared_on": "2026-10-19",
+  "status": "AI-assisted preliminary desk review; educator confirmation pending",
+  "method_note": "Classifications are draft curriculum-design judgements based on the stated concept outcomes and edge roles. They are not independent expert sign-off or empirical validation. The proposed tests are future checks, not completed experiments.",
+  "review_count": 27,
+  "review_counts": {
+    "Core required": 18,
+    "Helpful": 9
+  },
+  "edges": {
+    "EDGE-029": [
+      "Helpful",
+      "Signed-rational arithmetic helps with later examples but is not needed to introduce the roles of variable, unknown, and parameter. Use whole-number contexts first; provide FND-015 as a repair path where calculations—not letter roles—block learning.",
+      "Teach the letter-role objective with whole-number contexts, then test a separate signed-rational transfer item. If only the second fails, do not treat FND-015 as a gate for ALG-001."
+    ],
+    "EDGE-030": [
+      "Core required",
+      "Minimum symbol/statement literacy supports reading letters and translating between verbal and symbolic forms. For accessible self-study, teach this minimum within an ALG-001 bridge instead of denying entry.",
+      "Diagnostic: interpret x + 2 and translate 'a number plus 2'; provide a short notation bridge and retest variable/unknown/parameter distinctions."
+    ],
+    "EDGE-031": [
+      "Core required",
+      "The meanings of variables and parameters are needed to interpret symbolic expressions and reason about equivalence; the two concepts may be scaffolded in adjacent lessons.",
+      "Ask learners to identify the role of a letter and explain why 2x + 3 and 3 + 2x are equivalent; record whether an ALG-001 refresh is enough."
+    ],
+    "EDGE-032": [
+      "Core required",
+      "Numerical operation meanings and basic properties underpin interpretation and simplification of symbolic expressions. This requires operational meaning, not mastery of every arithmetic strand.",
+      "Move from 3 + 2 and 3 × 2 to 3x + 2x and equivalent forms; distinguish operation-meaning errors from notation errors."
+    ],
+    "EDGE-033": [
+      "Helpful",
+      "Exponent notation appears in some expressions, but initial expression meaning/equivalence can be learned without exponent laws. Introduce FND-014 just in time when powers enter.",
+      "Check the ALG-002 outcomes using expressions without exponents; verify that power laws are not secretly assumed before introducing them explicitly."
+    ],
+    "EDGE-034": [
+      "Core required",
+      "Equations and inequalities relate expressions and constrain possible values, so expression interpretation and equivalence are foundational to the current mapped outcome.",
+      "Ask learners to interpret x + 2 = 5 and x + 2 < 5, distinguish expression from statement, and test candidate values."
+    ],
+    "EDGE-035": [
+      "Helpful",
+      "A signed number line is important for representing solution sets with negative values, but the meaning of an equation or inequality as a statement can be taught earlier. This cluster combines both tasks.",
+      "Assess separately: identify an equation/inequality as a constraint, then graph a solution set spanning negative and positive values. FND-006 is more essential for the latter."
+    ],
+    "EDGE-036": [
+      "Core required",
+      "Solving equations depends on understanding them as constraints and preserving the solution set under valid transformations.",
+      "Have learners solve and verify a linear equation, then explain why a valid operation performed on both sides preserves equality."
+    ],
+    "EDGE-037": [
+      "Core required",
+      "Full linear equation/inequality fluency with standard rational coefficients uses signed and rational arithmetic. Integer-only starter examples may precede it, but the complete ALG-004 outcome needs this capability or targeted repair.",
+      "Use equations with negative/fractional coefficients and sign-sensitive inequalities. Diagnose arithmetic errors separately and provide an FND-015 repair where needed."
+    ],
+    "EDGE-038": [
+      "Core required",
+      "Rearranging literal formulas extends isolating an unknown through reversible equation transformations, the central capability developed in linear equation solving.",
+      "Rearrange a familiar formula for a different variable, substitute back, and check nonzero-denominator restrictions."
+    ],
+    "EDGE-039": [
+      "Core required",
+      "Formula rearrangement requires learners to interpret and maintain equivalent symbolic expressions even when the target variable changes.",
+      "Give an equivalent-expression task before rearranging a literal formula; check whether the transformation reasoning transfers."
+    ],
+    "EDGE-040": [
+      "Helpful",
+      "Unit conversion and dimensional sense are not prerequisites for symbolic rearrangement itself; they are important for interpreting unit-bearing formulas and scientific applications.",
+      "Compare a pure-symbol rearrangement with a unit-bearing application; assess algebraic success separately from interpreting and checking units."
+    ],
+    "EDGE-041": [
+      "Core required",
+      "The coordinate-plane outcome includes signed coordinates and points in all quadrants. Understanding signed values relative to zero is a direct conceptual support and can be bridged locally.",
+      "Ask learners to order signed values on a number line, then plot ordered pairs in all four quadrants; identify sign and axis errors."
+    ],
+    "EDGE-042": [
+      "Helpful",
+      "Basic notation helps with ordered pairs and coordinate labels, but these conventions are teachable inside the coordinate lesson. Do not make the entire FND-001 cluster a rigid gate.",
+      "Give a brief ordered-pair/axis primer and test plotting; compare error types before and after the local explanation."
+    ],
+    "EDGE-043": [
+      "Core required",
+      "Graph literacy explicitly requires plotting/interpreting coordinates and relating graphs to tables, equations, and contexts; coordinate-plane fluency is a direct dependency.",
+      "Before graph-construction tasks, plot table values with labelled axes and scales; assess coordinate plotting separately from trend interpretation."
+    ],
+    "EDGE-044": [
+      "Helpful",
+      "Proportional relationships offer useful graphs through the origin, but graph literacy must cover non-proportional, nonlinear, and empirical graphs too.",
+      "Test graph interpretation on non-proportional lines, nonlinear curves, and empirical/categorical data as well as percentage examples."
+    ],
+    "EDGE-045": [
+      "Core required",
+      "The current slope/rate outcome includes graph interpretation and proportional-versus-affine comparison; graph literacy supports axis/scale reading and representation changes.",
+      "Infer rate from a graph with nontrivial axis scales, confirm from a table, and separate graph-reading errors from rate-reasoning errors."
+    ],
+    "EDGE-046": [
+      "Core required",
+      "Slope/rate of change is change-per-change; ratios and unit rates supply the conceptual basis for interpreting slope rather than memorizing rise-over-run.",
+      "Transfer from a unit-rate context and double number line to a table and graph; explain the ratio and its units."
+    ],
+    "EDGE-047": [
+      "Helpful",
+      "Unit/dimensional sense improves interpretation of slope and intercept units, but an initial slope concept can be taught on a unitless graph. The full measurement cluster is broader than the minimum prerequisite.",
+      "Assess calculation first and unit interpretation second; teach only the missing unit subskill locally when needed."
+    ],
+    "EDGE-048": [
+      "Helpful",
+      "A function can first be introduced through mappings, input-output tables, and uniqueness, without symbolic expressions. Expression skill is needed for formula representations.",
+      "Teach a mapping/table example before a formula; assess function recognition separately from interpretation of symbolic rules."
+    ],
+    "EDGE-049": [
+      "Helpful",
+      "Coordinates are needed for graphical representations of functions, not for the input-output/mapping definition itself. Multiple representations should provide more than one entry route.",
+      "Assess function recognition from mappings and tables before graph tasks; keep graph interpretation as a dependent sub-outcome."
+    ],
+    "EDGE-050": [
+      "Core required",
+      "The mapped linear-function outcome uses slope/rate and the proportional-versus-affine distinction established in ALG-008.",
+      "From a table with constant first differences, build a linear rule, identify slope/intercept, and distinguish a line through the origin from one with nonzero intercept."
+    ],
+    "EDGE-051": [
+      "Core required",
+      "In this curriculum, a general function concept supplies input-output, domain, and range language needed to position linear functions as one function family. Motivation with a linear example can still come first.",
+      "Compare linear and non-linear functions and a relation that fails uniqueness; check whether learners can explain the special case and its domain."
+    ],
+    "EDGE-052": [
+      "Core required",
+      "Interpreting a linear function as an equation requires minimum fluency with equality as a relation and symbolic statements. Teach that minimum within the linear-function lesson if necessary.",
+      "Ask learners to read y = 2x + 3 as a relationship, explain what equality asserts, and interpret slope/intercept; note if a short bridge suffices."
+    ],
+    "EDGE-053": [
+      "Core required",
+      "Substitution and elimination extend equation-solving transformations and depend on preserving equality while isolating or eliminating variables.",
+      "Have learners solve/check a one-variable linear equation before a system; code errors as equation-solving, sign, or system-model issues."
+    ],
+    "EDGE-054": [
+      "Core required",
+      "The mapped systems outcome explicitly includes graphical solutions, which require coordinate plotting and reading intersection points. Algebraic methods may be introduced separately.",
+      "Solve a two-line system graphically and algebraically, then compare the intersection with the ordered-pair solution."
+    ],
+    "EDGE-055": [
+      "Core required",
+      "Linear-function representations supply the line equations and intersection meaning used in graphical systems. This is core to the full multi-representation outcome, though substitution/elimination can be taught separately.",
+      "Plot two linear functions, identify their intersection, and substitute the ordered pair into both equations; assess algebra and graph-reading separately."
+    ]
+  }
+}
