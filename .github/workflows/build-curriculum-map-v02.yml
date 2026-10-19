@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - ".github/workflows/build-curriculum-map-v02.yml"
+      - "curriculum/master-map/scripts/build_v02.py"
 
 permissions:
   contents: write
