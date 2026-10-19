@@ -8,8 +8,8 @@
 
 - **Governing document:** [Project Bible v1.3](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md) ([editable Word copy](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.docx))
 - **Curriculum planning:** [Master Curriculum Map v0.1 workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx)
-- **Project state:** early design and curriculum architecture; curriculum map is a working draft, not a frozen table of contents.
-- **Repository visibility recommendation:** keep this repository **private** while manuscripts, review notes, and publication/licensing decisions remain in progress.
+- **Project state:** early design and curriculum architecture; the curriculum map is a working draft, not a frozen table of contents.
+- **Repository visibility:** public. See [LICENSE](LICENSE) and [Rights, Attribution, and Reuse](RIGHTS_AND_REUSE.md) for the scope of permitted reuse.
 
 ## Non-negotiable learning commitments
 
@@ -40,9 +40,9 @@ A draft is not verified merely because it sounds plausible or because an LLM has
 1. Read the [Project Bible](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md).
 2. Review the [curriculum map workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx).
 3. Use the [chapter template](templates/chapter-template.md) for new writing.
-4. Record material decisions in [decision log](decisions/decision-log.md).
+4. Record material decisions in the [decision log](decisions/decision-log.md).
 5. Use the pull-request checklist for every meaningful change.
 
 ## License and reuse
 
-No public reuse license has been selected. Do not assume permission to reuse or redistribute project materials. Confirm the intellectual-property and licensing decision before making this repository public.
+Unless a file or asset states otherwise, original educational and project-documentation materials in this repository are offered under **Creative Commons Attribution 4.0 International (CC BY 4.0)**, only to the extent the project authors or contributors have the rights necessary to license those materials. See [LICENSE](LICENSE) and [RIGHTS_AND_REUSE.md](RIGHTS_AND_REUSE.md). Third-party material and other excluded rights remain subject to their own terms.
