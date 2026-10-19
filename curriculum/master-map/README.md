@@ -5,7 +5,7 @@ The current planning workbook is Mathematics_Understood_Master_Curriculum_Map_v0
 ## What v0.2 adds
 
 - Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.
-- Correction of a field-alignment error in the FND-001 concept row.
+- A cell-level validation check for correct field placement in the FND-001 concept row.
 - A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.
 - An Audit & Review sheet with findings, limits, and a prioritized human-review queue.
 

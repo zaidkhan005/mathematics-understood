@@ -19,9 +19,9 @@
 | Edges labelled Core / presumed prerequisite | 268 | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | 268 | Each needs a specific dependency mechanism and validation check. |
 
-## Corrections made in v0.2
+## Changes made in v0.2
 
-1. Corrected the FND-001 row: its representation notes (Annotated examples; symbol maps; number sentences.) had been entered in the core prerequisite field. The prerequisite field is now empty and the notes are in the representation/visual-requirements field.
+1. Verified the FND-001 row’s field placement against the source. Its prerequisite field is empty and its representation notes are already in the representation/visual-requirements field, so no source correction was necessary; the build retains a regression check for this structure.
 2. Updated workbook titles and baseline references to v0.2 while preserving the v0.1 workbook unchanged.
 3. Added a Dependency Review ledger preserving the prior edge labels and rationale text, with new fields for reviewed classification, specific dependency mechanism/evidence, validation check, reviewer, and review date. Each row starts UNREVIEWED.
 4. Added an Audit & Review worksheet containing structural checks and a prioritized human-review queue.
