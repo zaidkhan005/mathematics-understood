@@ -8,7 +8,7 @@
 
 - **Governing document:** [Project Bible v1.3](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md) ([editable Word copy](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.docx))
 - **Curriculum planning:** [Master Curriculum Map v0.2 workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx) ([v0.1 baseline](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx))
-- **Project state:** early design and curriculum architecture; v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents.
+- **Project state:** early design and curriculum architecture; v0.2 includes structural checks and 35 AI-assisted preliminary dependency classifications, pending educator confirmation; 233 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents.
 - **Repository visibility:** public. See [LICENSE](LICENSE) and [Rights, Attribution, and Reuse](RIGHTS_AND_REUSE.md) for the scope of permitted reuse.
 
 ## Non-negotiable learning commitments
@@ -46,3 +46,5 @@ A draft is not verified merely because it sounds plausible or because an LLM has
 ## License and reuse
 
 Unless a file or asset states otherwise, original educational and project-documentation materials in this repository are offered under **Creative Commons Attribution 4.0 International (CC BY 4.0)**, only to the extent the project authors or contributors have the rights necessary to license those materials. See [LICENSE](LICENSE) and [RIGHTS_AND_REUSE.md](RIGHTS_AND_REUSE.md). Third-party material and other excluded rights remain subject to their own terms.
+
+- **Dependency review:** [Batch 1](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md) and [Batch 2](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md) document draft classifications and proposed checks; neither is expert sign-off.
