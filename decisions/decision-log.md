@@ -45,3 +45,10 @@ Record consequential project decisions; do not rewrite history. Use the format b
 - **Risks / trade-offs:**
 - **Impacts on curriculum/manuscripts/templates:**
 - **Status / owner / review trigger:**
+
+## 2026-10-19 — Dependency review Batch 1 drafted
+
+- **Scope:** 14 high-leverage foundation-to-algebra edges reviewed as an AI-generated triage draft: EDGE-029, 030, 032, 033, 035, 037, 040, 041, 042, 044, 046, 047, 057, and 059.
+- **Decision status:** Recommendations are not expert-approved. The v0.2 official review classifications remain UNREVIEWED until a human reviewer checks each specific dependency mechanism and validation test.
+- **Principle:** Separate prerequisites required for full-scope mastery from concepts useful only for entry examples or contextual applications. Build repair routes and co-taught entry points where a rigid edge would block learning unnecessarily.
+- **Record:** See [DEPENDENCY_REVIEW_BATCH_01.md](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md).
