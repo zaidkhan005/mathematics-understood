@@ -8,7 +8,7 @@
 
 - **Governing document:** [Project Bible v1.3](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md) ([editable Word copy](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.docx))
 - **Curriculum planning:** [Master Curriculum Map v0.2 workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx) ([v0.1 baseline](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx))
-- **Project state:** early design and curriculum architecture; v0.2 adds structural checks and an edge-by-edge review ledger; the curriculum remains a working draft, not a frozen table of contents.
+- **Project state:** early design and curriculum architecture; v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents.
 - **Repository visibility:** public. See [LICENSE](LICENSE) and [Rights, Attribution, and Reuse](RIGHTS_AND_REUSE.md) for the scope of permitted reuse.
 
 ## Non-negotiable learning commitments

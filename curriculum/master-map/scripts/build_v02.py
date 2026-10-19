@@ -381,6 +381,10 @@ if root_readme.exists():
         "the curriculum map is a working draft, not a frozen table of contents.",
         "v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
     )
+    content = content.replace(
+        "v0.2 adds structural checks and an edge-by-edge review ledger; the curriculum remains a working draft, not a frozen table of contents.",
+        "v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
+    )
     root_readme.write_text(content, encoding="utf-8")
 
 (BASE / "README.md").write_text(

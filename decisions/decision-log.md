@@ -1,5 +1,14 @@
 # Decision log
 
+## 2026-10-19 — Dependency review batch 01: foundation to algebra
+
+- **Scope:** Review the 27 existing edges EDGE-029 through EDGE-055 connecting foundational numeracy to variables, expressions, equations, coordinates, graph literacy, rate/slope, functions, and linear systems.
+- **Preliminary classification:** 18 marked Core required for the stated outcome as currently scoped; 9 marked Helpful, with notes on local bridging and sub-outcomes.
+- **Reasoning standard:** The edge ledger now records a specific dependency mechanism and a proposed diagnostic/transfer check for each reviewed edge. “Helpful” means the link should support instruction but should not gate access to the whole concept cluster.
+- **Status and limitation:** This is an AI-assisted preliminary desk review, not independent educator sign-off; the proposed checks have not yet been run. Educator review and learner evidence are required before promoting these labels to validated curriculum decisions. 241 of 268 edges remain unreviewed.
+- **Follow-up:** Review the classifications with a mathematics educator, run the proposed checks with pilot learners where feasible, record disagreements, and update the ledger without silently rewriting the prior proposal set.
+
+
 ## 2026-10-19 — Master Curriculum Map v0.2 structural audit
 
 - **Decision:** Preserve v0.1 as the baseline and publish v0.2 as the audited successor. Add a dependency-review ledger; all 268 current edge classifications remain provisional until their necessity is established.

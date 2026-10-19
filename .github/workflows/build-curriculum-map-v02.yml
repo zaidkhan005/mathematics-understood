@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/build-curriculum-map-v02.yml"
       - "curriculum/master-map/scripts/build_v02.py"
+      - "curriculum/master-map/reviews/dependency-review-batch-01.json"
 
 permissions:
   contents: write
