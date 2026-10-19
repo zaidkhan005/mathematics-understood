@@ -7,8 +7,8 @@
 ## Current project baseline
 
 - **Governing document:** [Project Bible v1.3](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md) ([editable Word copy](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.docx))
-- **Curriculum planning:** [Master Curriculum Map v0.2 workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx) ([v0.1 baseline](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx))
-- **Project state:** early design and curriculum architecture; v0.2 includes structural checks and 35 AI-assisted preliminary dependency classifications, pending educator confirmation; 233 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents.
+- **Curriculum planning:** [Master Curriculum Map v0.3 workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.3.xlsx) ([v0.2 baseline](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.2.xlsx); [v0.1 historical baseline](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx))
+- **Project state:** early design and curriculum architecture; v0.3 provisionally splits complex-number outcomes across Stages 1, 2 and 6; 47 AI-assisted preliminary dependency classifications are recorded, educator confirmation is pending, and 226 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents.
 - **Repository visibility:** public. See [LICENSE](LICENSE) and [Rights, Attribution, and Reuse](RIGHTS_AND_REUSE.md) for the scope of permitted reuse.
 
 ## Non-negotiable learning commitments
@@ -38,7 +38,7 @@ A draft is not verified merely because it sounds plausible or because an LLM has
 ## How to start
 
 1. Read the [Project Bible](governance/project-bible/current/Mathematics_Understood_Project_Bible_v1.3.md).
-2. Review the [curriculum map workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.1.xlsx).
+2. Review the [curriculum map workbook](curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.3.xlsx).
 3. Use the [chapter template](templates/chapter-template.md) for new writing.
 4. Record material decisions in the [decision log](decisions/decision-log.md).
 5. Use the pull-request checklist for every meaningful change.
@@ -47,6 +47,6 @@ A draft is not verified merely because it sounds plausible or because an LLM has
 
 Unless a file or asset states otherwise, original educational and project-documentation materials in this repository are offered under **Creative Commons Attribution 4.0 International (CC BY 4.0)**, only to the extent the project authors or contributors have the rights necessary to license those materials. See [LICENSE](LICENSE) and [RIGHTS_AND_REUSE.md](RIGHTS_AND_REUSE.md). Third-party material and other excluded rights remain subject to their own terms.
 
-- **Dependency review:** [Batch 1](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md) and [Batch 2](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md) document draft classifications and proposed checks; neither is expert sign-off.
+- **Dependency review:** [Batch 1](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md), [Batch 2](curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md), and [Batch 3](curriculum/master-map/reviews/complex-number-split-review-v03.json) document AI-assisted preliminary classifications and proposed checks; educator confirmation is pending.
 
-- **Open curriculum proposal:** [Separate elementary complex numbers from complex analysis](curriculum/master-map/DECISION_PROPOSAL_CA001.md); no stage or dependency changes have been applied yet.
+- **Open curriculum decision:** [D-11 — complex-number scope split](curriculum/master-map/DECISION_PROPOSAL_CA001.md) has been implemented provisionally in v0.3; educator review and learner testing remain pending.
