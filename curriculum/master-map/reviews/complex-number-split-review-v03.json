@@ -1,0 +1,75 @@
+{
+  "batch_id": "COMPLEX-NUMBERS-SPLIT-V03",
+  "title": "Provisional review of complex-number learning milestones and affected prerequisites",
+  "prepared_on": "2026-10-19",
+  "status": "AI-assisted preliminary desk review; educator confirmation pending",
+  "method_note": "This batch reviews the edge consequences of provisionally splitting elementary algebraic complex numbers, complex-plane/polar representation, and complex analysis. The proposed checks have not been run. These are curriculum-design hypotheses, not independent expert sign-off or empirical validation.",
+  "review_count": 12,
+  "review_counts": {
+    "Core required": 9,
+    "Helpful": 2,
+    "Contextual link": 1
+  },
+  "edges": {
+    "EDGE-255": [
+      "Core required",
+      "Signed/rational arithmetic supports operations on real and imaginary components across the intended basic complex-arithmetic outcome. A short local arithmetic bridge remains appropriate for learners whose only gap is calculation fluency.",
+      "Ask learners to add/subtract signed rational components and then add/subtract two a+bi numbers. Separate arithmetic errors from errors identifying real and imaginary parts."
+    ],
+    "EDGE-256": [
+      "Helpful",
+      "The identity i² = −1 uses integer-exponent notation, but this can be taught immediately inside the first complex-number lesson; full prior mastery of the entire powers/roots strand should not block entry.",
+      "Introduce i² = −1 locally, then test the complex-arithmetic outcome with and without a prior exponent refresher. If only exponent notation blocks progress, retain a just-in-time bridge rather than a hard gate."
+    ],
+    "EDGE-257": [
+      "Core required",
+      "The mapped basic complex-number outcome includes symbolic operations and conjugate identities; expression reading and equivalence help learners expand and simplify expressions involving i. This minimum can be refreshed in the same lesson.",
+      "Ask learners to expand (a+bi)(c+di), replace i² with −1, and justify equivalent forms. Diagnose symbolic-equivalence gaps separately from complex-number meaning."
+    ],
+    "EDGE-258": [
+      "Core required",
+      "The CA-003 outcome includes polar form, modulus/argument and trigonometric interpretation; unit-circle and periodic-function knowledge supplies the angle/radian and sine/cosine relationships for rectangular-to-polar conversion.",
+      "Give a complex number in rectangular form and ask the learner to find its magnitude and argument and convert to polar form. Separate coordinate/distance errors from trig-sign, quadrant, and radian errors."
+    ],
+    "EDGE-259": [
+      "Core required",
+      "Complex functions and complex differentiation operate on complex inputs and outputs; elementary complex-number meaning and arithmetic are foundational to the mapped complex-analysis outcome.",
+      "Ask learners to evaluate a simple polynomial at a+bi and interpret a complex-valued function before discussing the complex derivative. Provide a CA-001 refresher if arithmetic alone is the barrier."
+    ],
+    "EDGE-260": [
+      "Core required",
+      "For the current complex-differentiation outcome, elementary differentiation language and rule fluency support computing and comparing derivatives of complex-valued expressions. A formal limit-based introduction can bridge this if needed.",
+      "Compare the real derivative of x² with the formal derivative of z² and then examine the complex difference quotient. Record whether derivative notation/rules or complex-number arithmetic is the actual blocker."
+    ],
+    "EDGE-261": [
+      "Core required",
+      "The mapped complex-analysis outcome includes proofs and precise assumptions; proof architecture, definitions, lemmas and conditions support the intended university/advanced depth.",
+      "Ask learners to identify assumptions and justify one short complex-differentiability claim. Test whether an explicitly scaffolded proof bridge is enough before requiring broader proof fluency."
+    ],
+    "EDGE-269": [
+      "Contextual link",
+      "Quadratic equations motivate why complex numbers are useful when a real quadratic has no real roots, but this application is not needed to learn basic complex arithmetic. It should be an extension/link rather than a gate.",
+      "Teach basic a+bi arithmetic without a quadratic prerequisite, then use x²+1=0 as a motivation. Confirm that the core arithmetic outcomes remain achievable before the quadratic connection."
+    ],
+    "EDGE-270": [
+      "Core required",
+      "Ordered pairs, axes and coordinate conventions support representing a complex number as a point with real and imaginary coordinates. A compact coordinate primer can be embedded in the CA-003 lesson.",
+      "Plot a+bi as (a,b) and read points back into algebraic form. Assess sign/axis conventions and coordinate fluency separately."
+    ],
+    "EDGE-271": [
+      "Core required",
+      "Modulus is the distance from the origin, computed from the real and imaginary components using the Pythagorean theorem; polar-form magnitude therefore depends on distance reasoning for the full target outcome.",
+      "For z=a+bi, derive |z|=√(a²+b²) from a labelled right triangle and test with exact coordinates. Distinguish theorem/application errors from arithmetic errors."
+    ],
+    "EDGE-272": [
+      "Core required",
+      "The geometry/polar cluster builds directly on understanding a+bi and component-wise operations; it then interprets those numbers as points/vectors and connects multiplication with transformations.",
+      "Teach a+bi and conjugates first, then plot, compute modulus/argument, and compare multiplication with a geometric rotation/scaling example. Check the algebraic and geometric skills separately."
+    ],
+    "EDGE-273": [
+      "Helpful",
+      "Polar/geometric interpretation is valuable in complex analysis but is not universally necessary for the definition of complex differentiability or an initial limit-based treatment. Keep it available as a bridge and representation, not a rigid gate for every complex-analysis entry route.",
+      "Introduce complex differentiation on a simple function using the difference quotient, then add a polar/geometric interpretation task. If the first outcome is achieved without prior polar form, keep CA-003 as helpful rather than core."
+    ]
+  }
+}
