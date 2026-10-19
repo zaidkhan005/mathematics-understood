@@ -150,16 +150,27 @@ decision_count = sum(bool(wb["Open Decisions"].cell(r, 1).value)
 template_count = sum("is included as a learning prerequisite for" in e["why"] for e in edges)
 all_core_proposed = sum("Core / presumed prerequisite" in e["type"] for e in edges)
 
-# Load the reviewed edge tranche as a separate, auditable data file.
-REVIEW_BATCH_FILE = BASE / "reviews" / "dependency-review-batch-01.json"
-if not REVIEW_BATCH_FILE.exists():
-    raise FileNotFoundError(f"Required review batch is missing: {REVIEW_BATCH_FILE}")
-review_document = json.loads(REVIEW_BATCH_FILE.read_text(encoding="utf-8"))
-preliminary_reviews = review_document["edges"]
-reviewer_label = review_document["status"]
-review_date = review_document["prepared_on"]
-if len(preliminary_reviews) != 27:
-    raise ValueError(f"Expected 27 preliminary edge reviews, found {len(preliminary_reviews)}.")
+# Combine numbered, versioned review batches and retain provenance per edge.
+REVIEW_DIR = BASE / "reviews"
+review_batch_files = sorted(REVIEW_DIR.glob("dependency-review-batch-*.json"))
+if not review_batch_files:
+    raise FileNotFoundError(f"No dependency review batch files found in: {REVIEW_DIR}")
+review_documents = [json.loads(path.read_text(encoding="utf-8")) for path in review_batch_files]
+preliminary_reviews = {}
+reviewer_by_edge = {}
+review_date_by_edge = {}
+review_batch_by_edge = {}
+for document in review_documents:
+    batch_edges = document.get("edges", {})
+    if document.get("review_count") != len(batch_edges):
+        raise ValueError(f"Review count mismatch in batch {document.get('batch_id')}.")
+    for edge_id, item in batch_edges.items():
+        if edge_id in preliminary_reviews:
+            raise ValueError(f"Duplicate edge review across batches: {edge_id}")
+        preliminary_reviews[edge_id] = item
+        reviewer_by_edge[edge_id] = document["status"]
+        review_date_by_edge[edge_id] = document["prepared_on"]
+        review_batch_by_edge[edge_id] = document["batch_id"]
 edge_by_id = {e["id"]: e for e in edges}
 if not set(preliminary_reviews).issubset(edge_by_id):
     raise ValueError("Review batch contains an edge ID not present in the dependency list.")
@@ -170,9 +181,15 @@ if any(len(item) != 3 or not all(str(x).strip() for x in item) for item in preli
     raise ValueError("Every reviewed edge must include a classification, mechanism, and proposed validation check.")
 review_counts = Counter(item[0] for item in preliminary_reviews.values())
 concept_title_by_id = {c["id"]: c["title"] for c in concepts}
+review_batch_summaries = []
+for document in review_documents:
+    batch_class_counts = Counter(item[0] for item in document["edges"].values())
+    counts = ", ".join(f"{classification}: {count}" for classification, count in sorted(batch_class_counts.items()))
+    review_batch_summaries.append(f"- {document['batch_id']}: {document['title']} — {len(document['edges'])} edges ({counts}); {document['status']}.")
+review_batch_summary_text = "\n".join(review_batch_summaries)
 review_batch_table = "\n".join(
     f"| {edge_id} | {edge_by_id[edge_id]['src']} — {concept_title_by_id[edge_by_id[edge_id]['src']]} → "
-    f"{edge_by_id[edge_id]['dst']} — {concept_title_by_id[edge_by_id[edge_id]['dst']]} | {item[0]} |"
+    f"{edge_by_id[edge_id]['dst']} — {concept_title_by_id[edge_by_id[edge_id]['dst']]} | {item[0]} | {review_batch_by_edge[edge_id]} |"
     for edge_id, item in preliminary_reviews.items()
 )
 
@@ -233,7 +250,7 @@ for out_r, e in enumerate(edges, 5):
     review_item = preliminary_reviews.get(e["id"])
     if review_item:
         classification, mechanism, proposed_check = review_item
-        review_fields = [classification, mechanism, proposed_check, reviewer_label, review_date]
+        review_fields = [classification, mechanism, proposed_check, reviewer_by_edge[e["id"]], review_date_by_edge[e["id"]]]
     else:
         review_fields = ["UNREVIEWED", None, None, None, None]
     values = [e["id"], e["src"], e["dst"], e["type"], e["why"], e["status"]] + review_fields
@@ -379,11 +396,11 @@ if root_readme.exists():
     )
     content = content.replace(
         "the curriculum map is a working draft, not a frozen table of contents.",
-        "v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
+        f"v0.2 adds structural checks and {len(preliminary_reviews)} AI-assisted preliminary dependency classifications; {edge_count - len(preliminary_reviews)} edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
     )
     content = content.replace(
         "v0.2 adds structural checks and an edge-by-edge review ledger; the curriculum remains a working draft, not a frozen table of contents.",
-        "v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
+        f"v0.2 adds structural checks and {len(preliminary_reviews)} AI-assisted preliminary dependency classifications; {edge_count - len(preliminary_reviews)} edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
     )
     root_readme.write_text(content, encoding="utf-8")
 
@@ -395,7 +412,7 @@ if root_readme.exists():
     "- Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.\n"
     "- A cell-level validation check for correct field placement in the FND-001 concept row.\n"
     "- A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.\n"
-    "- First tranche: 27 AI-assisted preliminary foundation/algebra classifications; educator confirmation is pending and 241 edges remain unreviewed.\n"
+    f"- Current review batches: {len(preliminary_reviews)} AI-assisted preliminary dependency classifications; educator confirmation is pending and {edge_count - len(preliminary_reviews)} edges remain unreviewed.\n"
     "- Proposed validation checks are test plans, not reported learning results.\n"
     "- An Audit & Review sheet with findings, limits, and a prioritized human-review queue.\n\n"
     "## Important interpretation rule\n\n"
@@ -440,14 +457,14 @@ report = f"""# Master Curriculum Map v0.2 — Structural Audit Report
 
 1. Verified the FND-001 row’s field placement against the source. Its prerequisite field is empty and its representation notes are already in the representation/visual-requirements field, so no source correction was necessary; the build retains a regression check for this structure.
 2. Updated workbook titles and baseline references to v0.2 while preserving the v0.1 workbook unchanged.
-3. Added a Dependency Review ledger preserving v0.1 edge labels and rationale text, with fields for classification, specific dependency mechanism/evidence, proposed validation check, reviewer, and date. The first 27 foundation/algebra edges now have AI-assisted preliminary classifications; 241 remain unreviewed.
+3. Added a Dependency Review ledger preserving v0.1 edge labels and rationale text, with fields for classification, specific dependency mechanism/evidence, proposed validation check, reviewer, and date. The current review batches contain {len(preliminary_reviews)} AI-assisted preliminary classifications; {edge_count - len(preliminary_reviews)} edges remain unreviewed.
 4. Added an Audit & Review worksheet containing structural checks and a prioritized human-review queue.
 
 ## High-priority unresolved judgement
 
 CA-001 — Complex numbers and geometric representation — is currently assigned to {ca_stage}, with listed prerequisites {ca_pre or "not recorded"}. Introductory complex numbers are commonly useful before a full complex-analysis course, so this placement deserves explicit review. v0.2 does not silently relocate the topic; decide whether to move the introductory concept earlier or separate basic complex-number work from complex analysis, then update links and visuals consistently.
 
-## First dependency-review tranche
+## Preliminary dependency-review batches
 
 **Scope:** foundation-to-algebra and early algebra/function relationships.  
 **Preliminary desk-reviewed:** {len(preliminary_reviews)} of {edge_count}.  
