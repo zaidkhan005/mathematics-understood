@@ -7,6 +7,8 @@ The current planning workbook is Mathematics_Understood_Master_Curriculum_Map_v0
 - Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.
 - A cell-level validation check for correct field placement in the FND-001 concept row.
 - A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.
+- First tranche: 27 AI-assisted preliminary foundation/algebra classifications; educator confirmation is pending and 241 edges remain unreviewed.
+- Proposed validation checks are test plans, not reported learning results.
 - An Audit & Review sheet with findings, limits, and a prioritized human-review queue.
 
 ## Important interpretation rule
