@@ -9,6 +9,10 @@ on:
       - "curriculum/master-map/scripts/build_v02.py"
       - "curriculum/master-map/reviews/dependency-review-batch-*.json"
 
+concurrency:
+  group: curriculum-map-v02-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -43,4 +47,6 @@ jobs:
             exit 0
           fi
           git commit -m "curriculum: add audited master map v0.2"
+          git fetch origin main
+          git rebase origin/main
           git push origin HEAD:main
