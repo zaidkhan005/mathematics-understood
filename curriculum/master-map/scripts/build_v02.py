@@ -230,8 +230,8 @@ review = wb.create_sheet("Dependency Review")
 review.sheet_view.showGridLines = False
 title(review, "DEPENDENCY REVIEW — Evidence and Classification Ledger", 11)
 subtitle(review, "All v0.1 edge types and rationale text are preserved as historical proposals. "
-        "The first 27 high-leverage foundation/algebra edges have AI-assisted preliminary desk reviews; educator confirmation is pending. "
-        "All other rows remain UNREVIEWED. A preliminary classification is not a final pedagogical sign-off.", 11)
+        f"{len(preliminary_reviews)} edges have AI-assisted preliminary desk reviews across the current batches; educator confirmation is pending. "
+        f"{edge_count - len(preliminary_reviews)} rows remain UNREVIEWED. A preliminary classification is not a final pedagogical sign-off.", 11)
 review.merge_cells(start_row=3, start_column=1, end_row=3, end_column=11)
 review["A3"] = ("Review rule: a valid graph is not necessarily a valid curriculum. State the specific learning mechanism and a check/test; "
                 "do not treat topic order or an LLM suggestion alone as evidence.")
@@ -418,6 +418,10 @@ if root_readme.exists():
     "## Important interpretation rule\n\n"
     "The graph is structurally consistent, but that does not prove its proposed prerequisites are pedagogically necessary. "
     "All v0.1 edge types and rationale text remain unverified historical proposals. Do not treat an edge as a confirmed core prerequisite until it has been reviewed and supported by a specific reason and validation check.\n\n"
+    "## Dependency review documents\n\n"
+    "- [Batch 1: Foundation-to-algebra and early function relationships](DEPENDENCY_REVIEW_BATCH_01.md) ([structured register](reviews/dependency-review-batch-01.json)).\n"
+    "- [Batch 2: Powers, polynomials, rational expressions, radicals, exponentials, and sequences](DEPENDENCY_REVIEW_BATCH_02.md) ([structured register](reviews/dependency-review-batch-02.json)).\n"
+    "- These are AI-assisted preliminary recommendations; educator confirmation is pending, and the proposed tests have not yet been run.\n\n"
     "The map should make explicit:\n\n"
     "- concepts and prerequisite dependencies;\n"
     "- entry points, diagnostics, and repair paths;\n"
@@ -478,8 +482,8 @@ CA-001 — Complex numbers and geometric representation — is currently assigne
 
 The review distinguishes a prerequisite for one sub-outcome (such as graphing a function) from a prerequisite for the entire concept cluster (such as defining a function as a mapping). “Core required” means required for the stated outcome as currently scoped, not that a learner should be excluded: diagnostics and short prerequisite instruction may be integrated into the dependent lesson.
 
-| Edge ID | Connection | Draft classification |
-|---|---|---|
+| Edge ID | Connection | Draft classification | Batch |
+|---|---|---|---|
 {review_batch_table}
 
 ## What the structural audit does not prove
@@ -510,7 +514,7 @@ assert check["Dependency Review"].max_row == 4 + edge_count
 assert sum(1 for r in range(5, 5 + edge_count) if check["Dependency Review"].cell(r, 7).value != "UNREVIEWED") == len(preliminary_reviews)
 edge_029_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-029")
 assert check["Dependency Review"].cell(edge_029_row, 7).value == "Helpful"
-assert check["Dependency Review"].cell(edge_029_row, 10).value == reviewer_label
+assert "educator confirmation pending" in str(check["Dependency Review"].cell(edge_029_row, 10).value).lower()
 edge_030_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-030")
 assert check["Dependency Review"].cell(edge_030_row, 7).value == "Core required"
 assert "educator confirmation" in check["Dependency Review"].cell(edge_030_row, 10).value
