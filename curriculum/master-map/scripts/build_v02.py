@@ -379,7 +379,7 @@ if root_readme.exists():
     )
     content = content.replace(
         "the curriculum map is a working draft, not a frozen table of contents.",
-        "v0.2 adds structural checks and an edge-by-edge review ledger; the curriculum remains a working draft, not a frozen table of contents."
+        "v0.2 adds structural checks and an edge-by-edge review ledger, including 27 AI-assisted preliminary foundation/algebra classifications; 241 edges remain unreviewed. The curriculum remains a working draft, not a frozen table of contents."
     )
     root_readme.write_text(content, encoding="utf-8")
 
@@ -391,6 +391,8 @@ if root_readme.exists():
     "- Structural checks for concept IDs, dependency endpoints, duplicate directed edges, graph cycles, and science-link references.\n"
     "- A cell-level validation check for correct field placement in the FND-001 concept row.\n"
     "- A Dependency Review ledger for classifying each edge and recording a specific mechanism, validation check, reviewer, and date.\n"
+    "- First tranche: 27 AI-assisted preliminary foundation/algebra classifications; educator confirmation is pending and 241 edges remain unreviewed.\n"
+    "- Proposed validation checks are test plans, not reported learning results.\n"
     "- An Audit & Review sheet with findings, limits, and a prioritized human-review queue.\n\n"
     "## Important interpretation rule\n\n"
     "The graph is structurally consistent, but that does not prove its proposed prerequisites are pedagogically necessary. "
@@ -484,6 +486,13 @@ assert check["Start Here"]["B11"].value == edge_count
 assert check["Concept Inventory"].cell(fnd_row, 6).value in (None, "")
 assert check["Concept Inventory"].cell(fnd_row, 7).value
 assert check["Dependency Review"].max_row == 4 + edge_count
+assert sum(1 for r in range(5, 5 + edge_count) if check["Dependency Review"].cell(r, 7).value != "UNREVIEWED") == len(preliminary_reviews)
+edge_029_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-029")
+assert check["Dependency Review"].cell(edge_029_row, 7).value == "Helpful"
+assert check["Dependency Review"].cell(edge_029_row, 10).value == reviewer_label
+edge_030_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-030")
+assert check["Dependency Review"].cell(edge_030_row, 7).value == "Core required"
+assert "educator confirmation" in check["Dependency Review"].cell(edge_030_row, 10).value
 check.close()
 print(f"Created {OUTPUT}: {concept_count} concepts, {edge_count} edges.")
 print(f"Invalid endpoints={len(bad_endpoints)}; duplicate edges={len(duplicates)}; cycles={cycle}; mismatches={len(pair_mismatches)}.")
