@@ -172,7 +172,7 @@ if "D-11" not in existing_decision_ids:
         cell.border = Border(bottom=thin)
     open_decisions_ws.row_dimensions[decision_row].height = 72
     for table in open_decisions_ws.tables.values():
-        if re.fullmatch(r"A4:G\\d+", table.ref):
+        if re.fullmatch(r"A4:G\d+", table.ref):
             table.ref = f"A4:G{decision_row}"
 
 concept_count, edge_count = len(concepts), len(edges)
@@ -487,6 +487,7 @@ report = f"""# Master Curriculum Map v0.2 — Structural Audit Report
 | Directed cycles | {"Detected" if cycle else "None detected"} | Graph structure only; no cycle is not proof of pedagogical validity. |
 | Inventory/edge-list mismatch pairs after field validation | {len(pair_mismatches)} | The Concept Inventory prerequisite fields reconcile with the Dependencies edge list. |
 | Invalid concept references in science links | {len(bad_science_refs)} | All science-link references resolve to current concept IDs. |
+| Open design decisions | {decision_count} | D-11 is recorded as an open proposal; no concept-stage or dependency change has been applied. |
 | Edges labelled Core / presumed prerequisite | {all_core_proposed} | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | {template_count} | Each needs a specific dependency mechanism and validation check. |
 
@@ -543,6 +544,9 @@ assert check["Start Here"]["B10"].value == concept_count
 assert check["Start Here"]["B11"].value == edge_count
 assert check["Concept Inventory"].cell(fnd_row, 6).value in (None, "")
 assert check["Concept Inventory"].cell(fnd_row, 7).value
+assert check["Open Decisions"].cell(15, 1).value == "D-11"
+assert check["Start Here"]["B13"].value == decision_count
+assert any(table.ref == "A4:G15" for table in check["Open Decisions"].tables.values())
 assert check["Dependency Review"].max_row == 4 + edge_count
 assert sum(1 for r in range(5, 5 + edge_count) if check["Dependency Review"].cell(r, 7).value != "UNREVIEWED") == len(preliminary_reviews)
 edge_029_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-029")
