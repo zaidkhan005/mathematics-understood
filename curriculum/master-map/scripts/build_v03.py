@@ -506,7 +506,7 @@ review.row_dimensions[3].height = 40
 review_headers = ["Edge ID", "Prerequisite concept ID", "Dependent concept ID",
                   "Baseline edge type (provisional)", "Baseline rationale / review note",
                   "Baseline status", "v0.3 preliminary review classification", "Specific dependency mechanism / evidence",
-                  "Proposed validation check / test", "Reviewer", "Review date"]
+                  "Proposed validation check / test", "Reviewer / provenance", "Review date"]
 for col, value in enumerate(review_headers, 1):
     review.cell(4, col, value)
 headers_style(review, 4, 1, 11)
