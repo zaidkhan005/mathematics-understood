@@ -1,0 +1,54 @@
+{
+  "batch_id": "DEPENDENCY-REVIEW-02",
+  "title": "Foundational links into polynomial, rational, radical, exponential, and sequence concepts",
+  "prepared_on": "2026-10-19",
+  "status": "AI-assisted desk review; educator confirmation pending",
+  "method_note": "Draft classifications reason from the current concept-cluster outcomes. They are not independent expert sign-off or empirical validation. The proposed checks have not been run yet.",
+  "review_count": 8,
+  "review_counts": {
+    "Core required": 4,
+    "Helpful": 4
+  },
+  "edges": {
+    "EDGE-057": [
+      "Core required",
+      "The polynomial cluster uses powers of the variable and interprets degree/coefficient structure; exponent meaning is part of reading polynomial terms, though a brief exponent refresher can be embedded in the first polynomial lesson.",
+      "Ask learners to read and compare x, x², and 3x² + 2x; check whether they can explain the exponent/degree meaning and carry out products without an exponent-law prerequisite gap."
+    ],
+    "EDGE-059": [
+      "Helpful",
+      "Integer factors and common multiples can support factor intuition, but polynomial factorization is not simply prime factorization. Treat FND-007 as a source of examples, not a gate to learning algebraic identities.",
+      "Test factoring simple polynomials such as x² + 5x + 6 and x² - 9 after teaching polynomial structure; compare performance with a separate numerical-factor diagnostic to see what actually blocks progress."
+    ],
+    "EDGE-065": [
+      "Helpful",
+      "Rational expressions are quotients of expressions/polynomials and can be introduced without prior fluency with powers and integer exponents. Powers are useful for later rational-expression examples but not for the basic fraction/domain idea.",
+      "Assess simplification and excluded-value reasoning on (x² - 1)/(x - 1) and simple linear quotients before using exponent-heavy examples; insert an exponent refresher only when required."
+    ],
+    "EDGE-066": [
+      "Core required",
+      "The radicals/rational-exponents cluster directly relies on the meaning of powers and exponent notation. Real-domain rules and equivalence manipulations build on that base.",
+      "Use conversion tasks between square roots and fractional exponents, simplify simple powers, then solve a radical equation and check the result. Distinguish exponent meaning errors from domain errors."
+    ],
+    "EDGE-068": [
+      "Core required",
+      "For the full radicals/rational-exponents outcome, learners need to reason about real-number domains, intervals, and valid values—especially even roots and constraints introduced by transformations. Teach any missing subskill locally as a bridge.",
+      "Give real-domain tasks such as √(x - 2), distinguish domain from output range, and ask which values make a proposed equation meaningful; identify whether interval/number-order reasoning is a genuine blocker."
+    ],
+    "EDGE-070": [
+      "Core required",
+      "Integer-exponent meaning underpins exponential functions as repeated multiplicative change and supports the inverse relationship between exponentials and logarithms.",
+      "Translate repeated percentage growth into an exponential rule, compare it with a linear sequence, and explain the role of the exponent; check this before teaching logarithms as the inverse operation."
+    ],
+    "EDGE-072": [
+      "Helpful",
+      "Real-number order and interval notation help state domains/ranges and logarithm constraints, but the essential positive-input restriction for logarithms can be taught explicitly in ALG-017. The whole FND-016 cluster is broader than the minimum needed.",
+      "Teach log input restrictions locally, then test domain/range statements and interval notation separately. If learners understand positive inputs but struggle only with notation, treat FND-016 as a repair path rather than a hard gate."
+    ],
+    "EDGE-074": [
+      "Helpful",
+      "Sequences and patterns can be introduced through finite lists, tables, and recursive rules before exponent fluency. Powers are useful for geometric sequences and exponential patterns but not for every sequence.",
+      "Assess arithmetic and recursive sequence rules without exponents first, then geometric sequences with powers. Separate the objectives and only require FND-014 for the latter."
+    ]
+  }
+}
