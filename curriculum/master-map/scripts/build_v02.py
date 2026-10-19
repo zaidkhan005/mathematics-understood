@@ -144,9 +144,40 @@ for r in range(5, science.max_row + 1):
 bad_science_refs = [(r, cid) for r, cid in science_refs if cid not in ids]
 if bad_science_refs:
     raise ValueError(f"Invalid concept reference in science links: {bad_science_refs[:5]}")
+
+# Keep the complex-number scope question visible in the workbook's open-decision register.
+open_decisions_ws = wb["Open Decisions"]
+existing_decision_ids = {
+    str(open_decisions_ws.cell(r, 1).value).strip()
+    for r in range(5, open_decisions_ws.max_row + 1)
+    if open_decisions_ws.cell(r, 1).value
+}
+if "D-11" not in existing_decision_ids:
+    decision_row = max(open_decisions_ws.max_row + 1, 15)
+    decision_values = [
+        "D-11",
+        "Complex-number scope and stage split",
+        "Elementary algebraic complex numbers, polar/geometric representation, and complex analysis use different prerequisite sets; one combined cluster may delay introductory content or force trigonometry too early.",
+        "Open proposal: re-scope CA-001 as algebraic complex numbers in Stage 1; create CA-003 for complex plane/polar/geometric representation in Stage 2; keep CA-002 complex analysis in Stage 6.",
+        "Review OpenStax's elementary/polar-form sequencing, check the full dependency graph, and obtain mathematics-educator feedback before implementing the split.",
+        "Open",
+        "Before producing a new workbook version or drafting the complex-number chapters."
+    ]
+    for col, value in enumerate(decision_values, 1):
+        cell = open_decisions_ws.cell(decision_row, col, value)
+        source_cell = open_decisions_ws.cell(decision_row - 1, col)
+        if source_cell.has_style:
+            cell._style = copy(source_cell._style)
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
+        cell.border = Border(bottom=thin)
+    open_decisions_ws.row_dimensions[decision_row].height = 72
+    for table in open_decisions_ws.tables.values():
+        if re.fullmatch(r"A4:G\\d+", table.ref):
+            table.ref = f"A4:G{decision_row}"
+
 concept_count, edge_count = len(concepts), len(edges)
-decision_count = sum(bool(wb["Open Decisions"].cell(r, 1).value)
-                     for r in range(5, wb["Open Decisions"].max_row + 1))
+decision_count = sum(bool(open_decisions_ws.cell(r, 1).value)
+                     for r in range(5, open_decisions_ws.max_row + 1))
 template_count = sum("is included as a learning prerequisite for" in e["why"] for e in edges)
 all_core_proposed = sum("Core / presumed prerequisite" in e["type"] for e in edges)
 
@@ -422,6 +453,8 @@ if root_readme.exists():
     "- [Batch 1: Foundation-to-algebra and early function relationships](DEPENDENCY_REVIEW_BATCH_01.md) ([structured register](reviews/dependency-review-batch-01.json)).\n"
     "- [Batch 2: Powers, polynomials, rational expressions, radicals, exponentials, and sequences](DEPENDENCY_REVIEW_BATCH_02.md) ([structured register](reviews/dependency-review-batch-02.json)).\n"
     "- These are AI-assisted preliminary recommendations; educator confirmation is pending, and the proposed tests have not yet been run.\n\n"
+    "## Open design proposal\n\n"
+    "- [D-11: Separate elementary complex numbers from complex analysis](DECISION_PROPOSAL_CA001.md). This proposal is open; no concept stage or dependency has been changed.\n\n"
     "The map should make explicit:\n\n"
     "- concepts and prerequisite dependencies;\n"
     "- entry points, diagnostics, and repair paths;\n"
