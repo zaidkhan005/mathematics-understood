@@ -21,6 +21,10 @@ The graph is structurally consistent, but that does not prove its proposed prere
 - [Batch 2: Powers, polynomials, rational expressions, radicals, exponentials, and sequences](DEPENDENCY_REVIEW_BATCH_02.md) ([structured register](reviews/dependency-review-batch-02.json)).
 - These are AI-assisted preliminary recommendations; educator confirmation is pending, and the proposed tests have not yet been run.
 
+## Open design proposal
+
+- [D-11: Separate elementary complex numbers from complex analysis](DECISION_PROPOSAL_CA001.md). This proposal is open; no concept stage or dependency has been changed.
+
 The map should make explicit:
 
 - concepts and prerequisite dependencies;
@@ -34,7 +38,3 @@ The map should make explicit:
 - status, open questions, and decision history.
 
 When revising the workbook, preserve its existing structure unless the revision is deliberate; record material changes in decisions/decision-log.md.
-
-## Open design proposal
-
-- [D-11 proposal: separate elementary complex numbers from complex analysis](DECISION_PROPOSAL_CA001.md). This is a source-backed proposal, not an implemented graph change; the affected clusters and edges remain unchanged until the scope is reviewed together.
