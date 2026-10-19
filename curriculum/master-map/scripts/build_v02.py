@@ -2,6 +2,7 @@ from collections import Counter, defaultdict, deque
 from copy import copy
 from pathlib import Path
 import re
+import json
 
 from openpyxl import load_workbook
 from openpyxl.comments import Comment
@@ -149,6 +150,32 @@ decision_count = sum(bool(wb["Open Decisions"].cell(r, 1).value)
 template_count = sum("is included as a learning prerequisite for" in e["why"] for e in edges)
 all_core_proposed = sum("Core / presumed prerequisite" in e["type"] for e in edges)
 
+# Load the reviewed edge tranche as a separate, auditable data file.
+REVIEW_BATCH_FILE = BASE / "reviews" / "dependency-review-batch-01.json"
+if not REVIEW_BATCH_FILE.exists():
+    raise FileNotFoundError(f"Required review batch is missing: {REVIEW_BATCH_FILE}")
+review_document = json.loads(REVIEW_BATCH_FILE.read_text(encoding="utf-8"))
+preliminary_reviews = review_document["edges"]
+reviewer_label = review_document["status"]
+review_date = review_document["prepared_on"]
+if len(preliminary_reviews) != 27:
+    raise ValueError(f"Expected 27 preliminary edge reviews, found {len(preliminary_reviews)}.")
+edge_by_id = {e["id"]: e for e in edges}
+if not set(preliminary_reviews).issubset(edge_by_id):
+    raise ValueError("Review batch contains an edge ID not present in the dependency list.")
+allowed_classifications = {"Core required", "Helpful", "Repair path", "Contextual link", "Remove"}
+if any(item[0] not in allowed_classifications for item in preliminary_reviews.values()):
+    raise ValueError("Review batch contains an unsupported classification.")
+if any(len(item) != 3 or not all(str(x).strip() for x in item) for item in preliminary_reviews.values()):
+    raise ValueError("Every reviewed edge must include a classification, mechanism, and proposed validation check.")
+review_counts = Counter(item[0] for item in preliminary_reviews.values())
+concept_title_by_id = {c["id"]: c["title"] for c in concepts}
+review_batch_table = "\n".join(
+    f"| {edge_id} | {edge_by_id[edge_id]['src']} — {concept_title_by_id[edge_by_id[edge_id]['src']]} → "
+    f"{edge_by_id[edge_id]['dst']} — {concept_title_by_id[edge_by_id[edge_id]['dst']]} | {item[0]} |"
+    for edge_id, item in preliminary_reviews.items()
+)
+
 start = wb["Start Here"]
 start["A1"] = "MATHEMATICS, UNDERSTOOD — MASTER CURRICULUM MAP v0.2"
 start["A2"] = (f"Audit update • {TODAY} • graph structure checked; relationship classifications remain provisional • "
@@ -165,6 +192,15 @@ for r in range(10, 14):
         start.cell(r, 2).value = science_rows
     elif label == "Open / provisional design decisions":
         start.cell(r, 2).value = decision_count
+start["A14"] = "AI-assisted preliminary edge reviews"
+start["B14"] = len(preliminary_reviews)
+start["A15"] = "Edges still unreviewed"
+start["B15"] = edge_count - len(preliminary_reviews)
+for col in (1, 2):
+    if start.cell(13, col).has_style:
+        start.cell(14, col)._style = copy(start.cell(13, col)._style)
+        start.cell(15, col)._style = copy(start.cell(13, col)._style)
+
 dep["A1"] = "PREREQUISITE GRAPH — Edge List (v0.1 proposal set preserved)"
 dep["A2"] = ("Directed edges remain hypotheses. All v0.1 type labels are proposed, not verified. "
              "Use the Dependency Review sheet to classify each relationship and record specific evidence.")
@@ -177,8 +213,8 @@ review = wb.create_sheet("Dependency Review")
 review.sheet_view.showGridLines = False
 title(review, "DEPENDENCY REVIEW — Evidence and Classification Ledger", 11)
 subtitle(review, "All v0.1 edge types and rationale text are preserved as historical proposals. "
-        "Every row begins UNREVIEWED; classify a relationship only after deciding whether it is required, helpful, "
-        "a repair path, contextual, or unnecessary.", 11)
+        "The first 27 high-leverage foundation/algebra edges have AI-assisted preliminary desk reviews; educator confirmation is pending. "
+        "All other rows remain UNREVIEWED. A preliminary classification is not a final pedagogical sign-off.", 11)
 review.merge_cells(start_row=3, start_column=1, end_row=3, end_column=11)
 review["A3"] = ("Review rule: a valid graph is not necessarily a valid curriculum. State the specific learning mechanism and a check/test; "
                 "do not treat topic order or an LLM suggestion alone as evidence.")
@@ -189,13 +225,18 @@ review.row_dimensions[3].height = 40
 review_headers = ["Edge ID", "Prerequisite concept ID", "Dependent concept ID",
                   "v0.1 proposed edge type (unverified)", "v0.1 rationale text (template; not evidence)",
                   "v0.1 status", "v0.2 review classification", "Specific dependency mechanism / evidence",
-                  "Validation check / test", "Reviewer", "Review date"]
+                  "Proposed validation check / test", "Reviewer", "Review date"]
 for col, value in enumerate(review_headers, 1):
     review.cell(4, col, value)
 headers_style(review, 4, 1, 11)
 for out_r, e in enumerate(edges, 5):
-    values = [e["id"], e["src"], e["dst"], e["type"], e["why"], e["status"],
-              "UNREVIEWED", None, None, None, None]
+    review_item = preliminary_reviews.get(e["id"])
+    if review_item:
+        classification, mechanism, proposed_check = review_item
+        review_fields = [classification, mechanism, proposed_check, reviewer_label, review_date]
+    else:
+        review_fields = ["UNREVIEWED", None, None, None, None]
+    values = [e["id"], e["src"], e["dst"], e["type"], e["why"], e["status"]] + review_fields
     for col, value in enumerate(values, 1):
         c = review.cell(out_r, col, value)
         c.alignment = Alignment(wrap_text=True, vertical="top")
@@ -245,7 +286,9 @@ checks = [
     ("Invalid concept references in science links", len(bad_science_refs), "Must be zero; all references resolve."),
     ("Edges marked Core / presumed prerequisite", all_core_proposed, "All are provisional proposals, not confirmed necessities."),
     ("Template-style edge rationales", template_count, "Each edge needs a specific dependency mechanism and validation check."),
-    ("FND-001 field alignment", "Corrected" if (field_fix or (not inv.cell(fnd_row, 6).value and inv.cell(fnd_row, 7).value)) else "Already aligned", "Cell-level check confirms representation notes are in the representation column and the prerequisite-ID field is empty."),
+    ("Edges with AI-assisted preliminary desk review", len(preliminary_reviews), "Draft classifications only; educator confirmation and learner evidence remain pending."),
+    ("Edges remaining unreviewed", edge_count - len(preliminary_reviews), "Do not infer a classification from the edge's position or old v0.1 label."),
+    ("FND-001 field alignment", "Corrected during build" if field_fix else "Already aligned", "Cell-level check confirms representation notes are in the representation column and the prerequisite-ID field is empty."),
     ("Science application rows", science_rows, "Each needs science/source review and explicit model assumptions."),
     ("Open design decisions", decision_count, "Stages remain provisional and do not define final book volumes."),
 ]
@@ -277,9 +320,9 @@ items = [
     ("RQ-001", "P0", "Data integrity", "FND-001 field placement was inspected against the source; representation notes are already in the correct column.",
      "Preserve the correct source data and keep a regression check that the prerequisite column contains concept IDs only.",
      "Resolved — verified", "Cell-level check confirms the prerequisite cell is empty and the representation column contains the notes."),
-    ("RQ-002", "P1", "Dependency semantics", f"All {edge_count} edges use the Core / presumed prerequisite label and remain provisional.",
-     "Review every edge; classify it as Core required, Helpful, Repair path, Contextual link, or Remove; record a specific reason and a validation check.",
-     "Open", "All edge rows have a reviewed classification, specific mechanism, validation check, reviewer, and date."),
+    ("RQ-002", "P1", "Dependency semantics", f"{len(preliminary_reviews)} of {edge_count} edges have AI-assisted preliminary desk classifications; {edge_count - len(preliminary_reviews)} remain unreviewed.",
+     "Continue reviewing in focused tranches. Treat prefilled classifications as draft hypotheses until a mathematics educator checks them and learner diagnostics/transfer tasks support the intended pathway.",
+     "Working", "Each edge has an explicit classification, specific mechanism, proposed validation check, reviewer, and date; educator sign-off is distinguished from AI-assisted desk review."),
     ("RQ-003", "P1", "Stage placement", f"CA-001, Complex numbers and geometric representation, is assigned to {ca_stage}; listed prerequisites: {ca_pre}.",
      "Decide whether introductory complex numbers belong earlier or should be split from advanced complex analysis. Update prerequisites, visuals, and cross-references together.",
      "Open", "A dated decision documents alternatives, prerequisite effects, and reviewer rationale."),
@@ -391,12 +434,30 @@ report = f"""# Master Curriculum Map v0.2 — Structural Audit Report
 
 1. Verified the FND-001 row’s field placement against the source. Its prerequisite field is empty and its representation notes are already in the representation/visual-requirements field, so no source correction was necessary; the build retains a regression check for this structure.
 2. Updated workbook titles and baseline references to v0.2 while preserving the v0.1 workbook unchanged.
-3. Added a Dependency Review ledger preserving the prior edge labels and rationale text, with new fields for reviewed classification, specific dependency mechanism/evidence, validation check, reviewer, and review date. Each row starts UNREVIEWED.
+3. Added a Dependency Review ledger preserving v0.1 edge labels and rationale text, with fields for classification, specific dependency mechanism/evidence, proposed validation check, reviewer, and date. The first 27 foundation/algebra edges now have AI-assisted preliminary classifications; 241 remain unreviewed.
 4. Added an Audit & Review worksheet containing structural checks and a prioritized human-review queue.
 
 ## High-priority unresolved judgement
 
 CA-001 — Complex numbers and geometric representation — is currently assigned to {ca_stage}, with listed prerequisites {ca_pre or "not recorded"}. Introductory complex numbers are commonly useful before a full complex-analysis course, so this placement deserves explicit review. v0.2 does not silently relocate the topic; decide whether to move the introductory concept earlier or separate basic complex-number work from complex analysis, then update links and visuals consistently.
+
+## First dependency-review tranche
+
+**Scope:** foundation-to-algebra and early algebra/function relationships.  
+**Preliminary desk-reviewed:** {len(preliminary_reviews)} of {edge_count}.  
+**Still unreviewed:** {edge_count - len(preliminary_reviews)}.  
+**Review status:** AI-assisted curriculum-design judgement; educator confirmation and learner evidence are pending. This is not an expert sign-off. Proposed validation checks are future checks, not completed experiments.
+
+| Classification | Count |
+|---|---:|
+| Core required for the mapped outcome (with diagnostic/bridge pathways) | {review_counts.get("Core required", 0)} |
+| Helpful but not a hard gate for the whole concept cluster | {review_counts.get("Helpful", 0)} |
+
+The review distinguishes a prerequisite for one sub-outcome (such as graphing a function) from a prerequisite for the entire concept cluster (such as defining a function as a mapping). “Core required” means required for the stated outcome as currently scoped, not that a learner should be excluded: diagnostics and short prerequisite instruction may be integrated into the dependent lesson.
+
+| Edge ID | Connection | Draft classification |
+|---|---|---|
+{review_batch_table}
 
 ## What the structural audit does not prove
 
