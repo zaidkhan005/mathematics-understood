@@ -52,3 +52,10 @@ Record consequential project decisions; do not rewrite history. Use the format b
 - **Decision status:** The workbook records these as AI-assisted preliminary desk reviews with educator confirmation pending. They are not expert-approved classifications, and the proposed diagnostic/transfer checks have not yet been run.
 - **Principle:** Separate prerequisites for full-scope mastery from knowledge useful only for starter examples or contextual applications. Use diagnostics, co-taught bridges, and repair routes so a rigid graph does not block entry unnecessarily.
 - **Records:** [Batch 1](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_01.md) and [Batch 2](../curriculum/master-map/DEPENDENCY_REVIEW_BATCH_02.md), with their structured JSON registers under `curriculum/master-map/reviews/`.
+
+## 2026-10-19 — D-11 proposal: complex-number scope and stage split
+
+- **Status:** Open proposal; no concept stages or dependency edges changed.
+- **Recommendation:** Split CA-001 into an algebraic complex-numbers milestone (proposed Stage 1) and a new CA-003 for complex-plane/polar/geometric work (proposed Stage 2); retain CA-002 complex analysis in Stage 6 and recheck its prerequisites.
+- **Rationale:** The current CA-001 cluster combines outcomes with different prerequisite needs. OpenStax presents elementary complex numbers separately from polar-form work, while an MIT OCW complex-variables course lists multivariable calculus and differential equations as prerequisites. Those sources inform the design but do not replace educator review.
+- **Record:** [D-11 decision proposal](../curriculum/master-map/DECISION_PROPOSAL_CA001.md). Review before a new workbook version is produced.
