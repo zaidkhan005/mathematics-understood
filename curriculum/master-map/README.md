@@ -28,3 +28,7 @@ The map should make explicit:
 - status, open questions, and decision history.
 
 When revising the workbook, preserve its existing structure unless the revision is deliberate; record material changes in decisions/decision-log.md.
+
+## Dependency review progress
+
+- [Batch 1: Foundations into Algebra](DEPENDENCY_REVIEW_BATCH_01.md) contains provisional AI-drafted classifications and concrete validation checks for selected high-leverage edges. These are recommendations, **not expert-approved decisions**; the official workbook ledger remains UNREVIEWED until a human reviewer confirms the rationale and evidence.
