@@ -505,7 +505,7 @@ review["A3"].alignment = Alignment(wrap_text=True, vertical="center")
 review.row_dimensions[3].height = 40
 review_headers = ["Edge ID", "Prerequisite concept ID", "Dependent concept ID",
                   "Baseline edge type (provisional)", "Baseline rationale / review note",
-                  "v0.1 status", "v0.2 review classification", "Specific dependency mechanism / evidence",
+                  "Baseline status", "v0.3 preliminary review classification", "Specific dependency mechanism / evidence",
                   "Proposed validation check / test", "Reviewer", "Review date"]
 for col, value in enumerate(review_headers, 1):
     review.cell(4, col, value)
@@ -721,10 +721,11 @@ report = f"""# Master Curriculum Map v0.3 — Structural Audit Report
 
 ## Changes made in v0.3
 
-1. Verified the FND-001 row’s field placement against the source. Its prerequisite field is empty and its representation notes are already in the representation/visual-requirements field, so no source correction was necessary; the build retains a regression check for this structure.
-2. Updated workbook titles and baseline references to v0.2 while preserving the v0.1 workbook unchanged.
-3. Added a Dependency Review ledger preserving v0.1 edge labels and rationale text, with fields for classification, specific dependency mechanism/evidence, proposed validation check, reviewer, and date. The current review batches contain {len(preliminary_reviews)} AI-assisted preliminary classifications; {edge_count - len(preliminary_reviews)} edges remain unreviewed.
-4. Added an Audit & Review worksheet containing structural checks and a prioritized human-review queue.
+1. Preserved the v0.2 workbook unchanged and created v0.3 as a versioned successor.
+2. Split CA-001 into Stage 1 algebraic complex numbers; added CA-003 for Stage 2 complex-plane/polar representation; retained CA-002 complex analysis in Stage 6.
+3. Updated CA-001/CA-002 prerequisite IDs, reclassified affected edges, added EDGE-269 through EDGE-273, and synchronized the Stage Map and Visual Catalogue.
+4. Updated D-11 to record the provisional implementation while leaving educator review and learner testing open.
+5. Rebuilt the Dependency Review ledger from the structured registers and reran ID, endpoint, duplicate, cycle, and core-prerequisite reconciliation checks. The current batches contain {len(preliminary_reviews)} AI-assisted preliminary classifications; {edge_count - len(preliminary_reviews)} edges remain unreviewed.
 
 ## Complex-number scope split (v0.3 provisional implementation)
 
@@ -741,6 +742,7 @@ CA-001 now covers algebraic complex-number meaning and operations in Stage 1. CA
 |---|---:|
 | Core required for the mapped outcome (with diagnostic/bridge pathways) | {review_counts.get("Core required", 0)} |
 | Helpful but not a hard gate for the whole concept cluster | {review_counts.get("Helpful", 0)} |
+| Contextual link | {review_counts.get("Contextual link", 0)} |
 
 The review distinguishes a prerequisite for one sub-outcome (such as graphing a function) from a prerequisite for the entire concept cluster (such as defining a function as a mapping). “Core required” means required for the stated outcome as currently scoped, not that a learner should be excluded: diagnostics and short prerequisite instruction may be integrated into the dependent lesson.
 
@@ -784,6 +786,17 @@ assert check["Stage Map"].cell(stage1_row, 3).value.endswith("algebraic complex 
 assert _locate_row(check["Visual Catalogue"], 1, "V-16") is not None
 assert _locate_row(check["Open Decisions"], 1, "D-11") is not None
 assert len(edges) == 273 and len(concepts) == 104
+edge_255_review_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-255")
+edge_256_review_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-256")
+edge_269_review_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-269")
+edge_273_review_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-273")
+assert check["Dependency Review"].cell(edge_255_review_row, 7).value == "Core required"
+assert check["Dependency Review"].cell(edge_256_review_row, 7).value == "Helpful"
+assert check["Dependency Review"].cell(edge_269_review_row, 7).value == "Contextual link"
+assert check["Dependency Review"].cell(edge_273_review_row, 7).value == "Helpful"
+assert check["Dependencies"].cell(edge_row_by_id["EDGE-256"], 4).value == "Helpful / just-in-time link"
+assert check["Dependencies"].cell(edge_row_by_id["EDGE-269"], 4).value == "Contextual link (non-prerequisite)"
+assert pair_mismatches == [] and not cycle
 assert sum(1 for r in range(5, 5 + edge_count) if check["Dependency Review"].cell(r, 7).value != "UNREVIEWED") == len(preliminary_reviews)
 edge_029_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-029")
 assert check["Dependency Review"].cell(edge_029_row, 7).value == "Helpful"
