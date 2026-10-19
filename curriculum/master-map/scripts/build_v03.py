@@ -715,7 +715,7 @@ report = f"""# Master Curriculum Map v0.3 — Structural Audit Report
 | Directed cycles | {"Detected" if cycle else "None detected"} | Graph structure only; no cycle is not proof of pedagogical validity. |
 | Inventory/edge-list mismatch pairs after field validation | {len(pair_mismatches)} | The Concept Inventory prerequisite fields reconcile with the Dependencies edge list. |
 | Invalid concept references in science links | {len(bad_science_refs)} | All science-link references resolve to current concept IDs. |
-| Open design decisions | {decision_count} | D-11 is recorded as an open proposal; no concept-stage or dependency change has been applied. |
+| Open design decisions | {decision_count} | D-11 has a provisional v0.3 implementation; educator review and learner validation remain pending. |
 | Edges labelled Core / presumed prerequisite | {all_core_proposed} | These are provisional proposals, not validated necessities. |
 | Template-style edge rationales | {template_count} | Each needs a specific dependency mechanism and validation check. |
 
