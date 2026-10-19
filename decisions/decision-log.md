@@ -59,3 +59,13 @@ Record consequential project decisions; do not rewrite history. Use the format b
 - **Recommendation:** Split CA-001 into an algebraic complex-numbers milestone (proposed Stage 1) and a new CA-003 for complex-plane/polar/geometric work (proposed Stage 2); retain CA-002 complex analysis in Stage 6 and recheck its prerequisites.
 - **Rationale:** The current CA-001 cluster combines outcomes with different prerequisite needs. OpenStax presents elementary complex numbers separately from polar-form work, while an MIT OCW complex-variables course lists multivariable calculus and differential equations as prerequisites. Those sources inform the design but do not replace educator review.
 - **Record:** [D-11 decision proposal](../curriculum/master-map/DECISION_PROPOSAL_CA001.md). Review before a new workbook version is produced.
+
+
+## 2026-10-19 — D-11 provisional implementation in Master Curriculum Map v0.3
+
+- **Status:** Provisional implementation; mathematics-educator confirmation and learner validation are still pending.
+- **Change:** CA-001 now covers algebraic complex numbers in Stage 1. New cluster CA-003 covers complex-plane/modulus/argument/polar representation in Stage 2. CA-002 complex analysis remains in Stage 6.
+- **Coordinated edits:** Updated concept outcomes and core prerequisite IDs; reclassified affected links into core, helpful, and contextual types; added EDGE-269 through EDGE-273; updated the Stage Map and Visual Catalogue; retained existing V-16 and added V-17 for polar/geometric representation.
+- **Automated structural results:** 104 concept clusters and 273 edges; no invalid endpoints, duplicate directed edges, directed cycles, or mismatches between Concept Inventory core prerequisite IDs and core-labelled edges. This is structural validation only, not evidence that the pedagogical sequencing is optimal.
+- **Review state:** Batch 3 supplies 12 AI-assisted preliminary classifications for the affected edges. Across all three batches, 47 edges have preliminary classifications and 226 remain unreviewed. Educator confirmation is pending; proposed diagnostic/transfer checks have not been run.
+- **Record:** [D-11 provisional implementation record](../curriculum/master-map/DECISION_PROPOSAL_CA001.md), [v0.3 workbook](../curriculum/master-map/Mathematics_Understood_Master_Curriculum_Map_v0.3.xlsx), and [v0.3 audit report](../curriculum/master-map/AUDIT_REPORT_v0.3.md).
