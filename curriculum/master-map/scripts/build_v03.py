@@ -247,9 +247,9 @@ v15 = [
 ]
 for col, value in enumerate(v15, 1):
     visual_ws.cell(v15_row, col, value)
-v16_row = _locate_row(visual_ws, 1, "V-16")
+v16_row = _locate_row(visual_ws, 1, "V-17")
 if v16_row is not None:
-    raise ValueError("V-16 already exists in the v0.2 baseline; check before adding.")
+    raise ValueError("V-17 already exists in the v0.2 baseline; check before adding.")
 visual_rows = [rr for rr in range(5, visual_ws.max_row + 1) if visual_ws.cell(rr, 1).value]
 last_visual_row = max(visual_rows)
 v16_row = last_visual_row + 1
@@ -261,7 +261,7 @@ for col in range(1, 8):
     if src.alignment:
         dst.alignment = copy(src.alignment)
 v16 = [
-    "V-16",
+    "V-17",
     "Complex plane, modulus/argument and polar form",
     "CA-001;CA-003;ALG-006;GEO-005;TRI-002",
     "Connect the algebraic number a + bi to coordinates, distance from the origin, direction, polar representation, and multiplication as rotation/scaling.",
@@ -783,7 +783,7 @@ assert any(str(check["Concept Inventory"].cell(r, 1).value) == "CA-003" for r in
 assert check["Concept Inventory"].cell(ca001_row_pre, 2).value == "1 — Algebra & functions"
 assert check["Concept Inventory"].cell(ca002_row_pre, 2).value == "6 — Advanced theory"
 assert check["Stage Map"].cell(stage1_row, 3).value.endswith("algebraic complex numbers in rectangular form.")
-assert _locate_row(check["Visual Catalogue"], 1, "V-16") is not None
+assert _locate_row(check["Visual Catalogue"], 1, "V-17") is not None
 assert _locate_row(check["Open Decisions"], 1, "D-11") is not None
 assert len(edges) == 273 and len(concepts) == 104
 edge_255_review_row = 5 + next(i for i, edge in enumerate(edges) if edge["id"] == "EDGE-255")
