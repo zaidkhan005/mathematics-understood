@@ -25,3 +25,8 @@ The current planning workbook is [Mathematics_Understood_Master_Curriculum_Map_v
 A structurally consistent graph does not prove that every proposed prerequisite is pedagogically necessary. The 47 current classifications are AI-assisted preliminary judgments, not expert-approved decisions or empirical results. Keep mapped outcomes, entry diagnostics, bridge pathways, and learner evidence visible when refining the course order.
 
 When revising this workbook, preserve prior versioned baselines and record material changes in decisions/decision-log.md.
+
+
+## Proposed validation protocol
+
+- [Complex-number pathway validation protocol v0.1](VALIDATION_PROTOCOL_COMPLEX_NUMBER_SPLIT_v0.1.md): proposed diagnostic and transfer tasks for CA-001 and CA-003, error codes, edge-by-edge review logic, and pilot reporting rules. **Not yet piloted; no learner results are claimed.**
